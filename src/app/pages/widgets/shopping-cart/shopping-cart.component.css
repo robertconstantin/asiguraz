@@ -1,0 +1,9 @@
+.counter input{
+  line-height: 14px;
+}
+.shop-item .image img{
+  width: 90px;
+}
+.shop-item .text{
+  padding-left: 110px;
+}

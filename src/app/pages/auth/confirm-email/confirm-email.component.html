@@ -1,0 +1,37 @@
+<!-- auth/confirm-email -->
+<div class='sample-form-2 login'>
+  <form>
+    <div class='form-description'>
+      <h3>Email Confirmation</h3>
+      <p *ngIf='loading'>Validating your email address.</p>
+    </div>
+    <div class='form-group has-danger' *ngIf='!loading && error'>
+        <div class='form-control-feedback'>
+          Incorect credentials
+        </div>
+    </div>
+    <div class='form-group' *ngIf='!loading && !error'>
+        <div class='form-control-feedback'>
+          We successfully confirmed your email address
+        </div>
+    </div>
+    <div class='form-group' *ngIf='loading'>
+        <app-loading-element ></app-loading-element>
+    </div>
+    <div class='form-group' *ngIf='!loading && !error'>
+        <a class='btn btn-success btn-rounded'
+        routerLink='/auth/login'
+        *ngIf='!loading && !success'>
+          Sign in here
+        </a>
+    </div>
+    <div class='form-group' *ngIf='!loading && error'>
+        <a class='btn btn-success btn-rounded'
+        routerLink='/auth/resend-confirm-email'
+        *ngIf='!loading && !success'>
+          Resend email
+        </a>
+    </div>
+  </form>
+</div>
+<!-- end auth/confirm-email -->

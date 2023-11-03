@@ -1,0 +1,92 @@
+<footer class="footer type-2">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row d-flex align-items-center justify-content-between">
+        <a href="/" class="logo-footer col-12 col-lg-auto">
+          <img src="assets/asiguraz-logo-big.png" alt="" />
+        </a>
+        <div class="col-12 col-lg-8">
+          <ul class="nav-footer nav justify-content-center">
+            <li class="nav-item">
+              Site Map
+            </li>
+            <li class="nav-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="servicii.html">Servicii</a>
+            </li>
+            <li class="nav-item">
+              <a href="asigurare-rca.html">Asigurare RCA</a>
+            </li>
+            <li class="nav-item">
+              <a href="despre-noi.html">Despre noi</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <ul class="nav-footer nav justify-content-center" *ngIf="!user">
+            <li class="nav-item">
+              Contul meu
+            </li>
+            <li class="nav-item">
+              <a href="login.html">Intra in cont</a>
+            </li>
+            <li class="nav-item">
+              <a href="sign-up.html">Creaza-ti acum</a>
+            </li>
+            <li class="nav-item">
+              <a href="forgot-password.html">Ai uitat parola?</a>
+            </li>
+          </ul>
+          <ul class="nav-footer nav justify-content-center" *ngIf="user">
+            <li class="nav-item">
+              Asiguraz.ro
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['user/asigurarile-mele']">
+                Asigurarile mele
+              </a>
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['user/my-profile']">
+                Contul meu
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-12 col-lg-auto folow-footer">
+          <a href="https://facebook.com/asiguraz" target="_black">
+            <fa-icon [icon]="['fab', 'facebook']" size="lg"></fa-icon>
+          </a>
+          <a href="https://instagram.com/asiguraz" target="_black">
+            <fa-icon [icon]="['fab', 'instagram']" size="lg"></fa-icon>
+          </a>
+          <a href="https://www.linkedin.com/company/asiguraz" target="_black">
+            <fa-icon [icon]="['fab', 'linkedin']" size="lg"></fa-icon>
+          </a>
+          <a href="https://www.twitter.com/todo" target="_black">
+            <fa-icon [icon]="['fab', 'twitter']" size="lg"></fa-icon>
+          </a>
+          <!-- <a href="http://pinterest.com" target="_black">
+            <fa-icon [icon]="['fab', 'pinterest']" size="lg"></fa-icon>
+          </a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="seal-logo col-12 col-md-6 mb-2">
+          <img src="https://seal.godaddy.com/images/3/en/siteseal_gd_3_h_l_m.gif" alt="Security Seal" id="seal-img">
+          <img src="https://www.mobilpay.ro/public/wp-content/themes/mobilpay/library/images/footer-icons.png">
+          <!-- <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=yRsXO8UA695VKhGTnhlQcoJ9IjktYXo6Wqh68k3EFLrVqrs5a6rrrglLJPXR"></script></span> -->
+        </div>
+        <div class="copyr col-12 col-md-6 mb-2">© {{ currentYear }} asigurAZ.ro All Rights Reserved</div>
+      </div>
+    </div>
+  </div>
+</footer>

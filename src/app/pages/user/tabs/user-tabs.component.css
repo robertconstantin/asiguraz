@@ -1,0 +1,17 @@
+.main-content {
+  height: 100vmin;
+  min-height: 600px;
+}
+
+.user-profile-top{
+  text-align: center;
+}
+
+.user-profile-top i{
+  font-size: 180px;
+}
+
+.rounded-circle{
+  border-radius: 180px;
+  border: 1px solid #000;
+}

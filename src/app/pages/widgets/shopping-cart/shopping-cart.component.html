@@ -1,0 +1,83 @@
+<div class="popup-wrap">
+  <div class="popup shop-panel popup-data-shop">
+      <div class="shop-panel-wrap">
+          <div class="close">
+              <img src="assets/close.png" alt="">
+          </div>
+          <div class="title">
+              <div class="h6">Cosul meu</div>
+              <div class="simple-text md">
+                  <p>Aveti un produs in cosul de cumparaturi</p>
+              </div>
+          </div>
+          <div class="shop-item">
+              <div class="close-item vertical-align">
+                  <img src="assets/close_item.png" alt="">
+              </div>
+              <div class="image">
+                  <!-- <img src="assets/shop_item_img_1.jpg" alt=""> -->
+              </div>
+              <div class="text">
+                  <a href="#">Asigurare Opel Astra, 6 Luni</a>
+                  <div class="counter">
+                    <div class="minus-val">
+                        <i class="fa-minus"></i>
+                    </div>
+                    <input type="text" value="6">
+                    <div class="plus-val">
+                        <i class="fa-plus"></i>
+                    </div>
+                  </div>
+                  <span class="price-val">
+                      <b>485,50</b> RON
+                  </span>
+              </div>
+          </div>
+          <div class="shop-item">
+              <div class="close-item vertical-align">
+                  <img src="assets/close_item.png" alt="">
+              </div>
+              <div class="image">
+                  <!-- <img src="assets/shop_item_img_3.jpg" alt=""> -->
+              </div>
+              <div class="text">
+                  <a href="#">Asigurare de vacanta, 14-28 Jun 2018, 7 zile</a>
+                  <div class="counter">
+                      <div class="minus-val">
+                          <i class="fa-minus"></i>
+                      </div>
+                      <input type="text" value="1">
+                      <div class="plus-val">
+                          <i class="fa-plus"></i>
+                      </div>
+                  </div>
+                  <span class="price-val">287 RON</span>
+              </div>
+          </div>
+
+          <div class="shop-item">
+              <div class="close-item vertical-align">
+                  <img src="assets/close_item.png" alt="">
+              </div>
+              <div class="image">
+                  <!-- <img src="assets/shop_item_img_3.jpg" alt=""> -->
+              </div>
+              <div class="text">
+                  <a href="#">Asigurare casa basic promo</a>
+                  <span class="price-val">279 RON</span>
+              </div>
+          </div>
+      </div>
+      <div class="shop-total">
+          <div class="shop-total-wrap">
+              <div class="title-numb">
+                  <div class="h14">total</div>
+                  <span class="price-val">4 326 RON</span>
+              </div>
+              <a [routerLink]="'/user/finalizare-comanda'" (click)="removeSidebar()" class="button-type-2">
+                  <span>Finalizeaza comanda</span>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>

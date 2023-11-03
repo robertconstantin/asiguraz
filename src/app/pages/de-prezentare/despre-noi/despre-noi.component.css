@@ -1,0 +1,20 @@
+.client-item a img {
+  max-height: 90px;
+}
+.client-item {
+  margin-bottom: 20px;
+  height: 90px;
+}
+.about-tags-block{
+  padding: 18px 0px;
+  border: 2px solid #fff;
+}
+.main-content.no-top{
+  border: 0px !important;
+}
+.client-item a{
+  opacity: 0.5;
+}
+.client-item a:hover{
+  opacity: 1;
+}

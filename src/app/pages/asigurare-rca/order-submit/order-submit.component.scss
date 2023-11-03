@@ -1,0 +1,78 @@
+.main-content {
+  min-height: calc(100vmin - 90px);
+}
+
+.profile-picture {
+  max-width: 25px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+.user{
+  span{
+    color: #b9b9b9;
+  }
+  .name{
+    font-weight: 700;
+  }
+  .logout{
+    color: #224093;
+    font-size: 12px;
+  }
+}
+
+.card{
+  margin-bottom: 1rem;
+  box-shadow: -3px 3px 12px rgba(2, 2, 2, 0.22);
+  transition: all 300ms ease-out;
+
+  &:hover{
+    box-shadow: -3px 3px 12px rgba(34, 64, 147, 0.50);
+  }
+
+  .asig-logo{
+    width: 90px;
+    height: 90px;
+    border: 1px solid;
+    border-radius: 50%;
+    img{
+      width: 90%;
+    }
+  }
+
+  p, label{
+    margin-bottom: 0;
+  }
+
+  label{
+    font-weight: 700;
+  }
+
+  .status{
+    border: 1px solid;
+    padding: 5px 15px;
+    margin-top: 0.5rem;
+    display: inline-flex;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    &.active{
+      color: #60a92a;
+    }
+  }
+
+  .card-block {
+    text-align: left;
+    text-transform: capitalize;
+  }
+}
+
+.main-content {
+  background: none;
+
+  .user-content {
+    padding: 0;
+  }
+  .row-bg {
+    width: 100%;
+  }
+}

@@ -1,0 +1,34 @@
+<!-- auth/resend-confirm-email -->
+<div class="sample-form-2 login">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-description">
+          <h3>Resend Confirmation Email</h3>
+          <p>Please enter your email address</p>
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': form.get('email').touched && form.get('email').errors, 'has-success': form.get('email').touched && form.get('email').valid}">
+            <!-- <label>Your email</label> -->
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="sli-envelope"></i>
+                </span>
+                <input type="email" class="form-control" name="email" placeholder="Email"
+                       formControlName="email"
+                       [ngClass]="{'form-control-danger': form.get('email').touched && form.get('email').errors, 'form-control-success': form.get('email').touched && form.get('email').valid}">
+            </div>
+        </div>
+        <div class="form-group has-danger">
+            <div *ngIf="error" class="form-control-feedback">Sorry, that email is not valid</div>
+        </div>
+        <div class="form-group has-success">
+            <div *ngIf="!loading && success" class="form-control-feedback">We successfully sent you an email with all the instructions</div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-rounded" type="submit" *ngIf="!loading && !success">Send</button>
+            <app-loading-element *ngIf="loading && !success"></app-loading-element>
+        </div>
+        <div class="form-group" *ngIf="!loading && success">
+            <a routerLink="/auth/login" class="btn btn-success btn-rounded">Sign in here</a>
+        </div>
+      </form>
+</div>
+<!-- end auth/resend-confirm-email -->

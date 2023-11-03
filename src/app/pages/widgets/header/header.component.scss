@@ -1,0 +1,29 @@
+.logo-mobile img{
+  width: 100%;
+  padding-right: 20px;
+}
+
+.logo-mobile{
+  margin: 15px auto 30px;
+  max-width: 170px;
+}
+
+.profile-picture{
+  max-width: 25px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.nav-menu{
+  ul{
+    margin-bottom: 0;
+  }
+}
+.logo{
+  width: 140px;
+}
+.header{
+  &.style-center{
+    height: 60px;
+  }
+}

@@ -1,0 +1,230 @@
+
+.custom-padding {
+  padding-bottom: 15px !important;
+}
+
+/* Input style */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::placeholder {
+  color: $gray !important;
+  font-size: 1rem;
+  font-weight: normal !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $gray !important;
+  font-size: 1rem;
+  font-weight: normal !important;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $gray !important;
+  font-size: 1rem;
+  font-weight: normal !important;
+}
+
+
+
+input, textarea {
+  padding: 9px 9px 9px 15px;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  color: $black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+select {
+  padding: 9px 9px 9px 15px;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  color: $black;
+  font-size: 14px;
+}
+
+select.ng-valid {
+  font-weight: bold;
+}
+
+
+.input-group span {
+  float: left;
+  margin: 0 0 5px 0;
+}
+
+
+/* Input validations */
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched,
+select.ng-valid.ng-touched {
+  border: 1px solid $green;
+  //background: url(img/icons/check.svg) no-repeat scroll right;
+  background-position: right 13px center;
+  // font-weight: bold;
+
+}
+
+ng-datepicker.ng-touched.ng-invalid div.ngx-datepicker-container input,
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: 1px solid $red !important;
+  //background: url(img/icons/error.png) no-repeat scroll right;
+  background-position: right 13px center;
+  background-size: 27px;
+}
+
+input.ng-loading,
+textarea.ng-loading,
+select.ng-loading {
+  border: 1px solid $green;
+  //background: url(img/icons/loading.gif) no-repeat scroll right;
+  background-position: right 13px center;
+}
+
+select option{
+  background-color: $gray;
+}
+
+/* Title of content */
+h2.fs-title {
+  font-size: 32px !important;
+  line-height: 49px;
+}
+
+h4.s-title {
+  font-size: 16px !important;
+  line-height: 25px;
+}
+
+.main-content-bg-out {
+  /*background = gradient + image pattern combo*/
+  border: 0px !important;
+	background: $gradient;
+}
+
+.main-content-bg {
+  /*background = gradient + image pattern combo*/
+  border: 0px !important;
+	background: $gradient-inversed;
+}
+
+@media (max-width: 1020px) {
+  .main-content-bg ,.main-content-bg-out{
+    height: 100% !important;
+  }
+}
+
+.content-bg {
+	width: 100%;
+	margin: 50px auto;
+	text-align: center;
+  position: relative;
+  padding-top: 50px;
+}
+.row-bg {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 auto !important;
+
+	/*stacking fieldsets above each other*/
+  position: relative;
+  @include media-breakpoint-down(lg) {
+    width: 98%;
+    padding: 20px 0;
+  }
+}
+
+.button-type-2.style-extended{
+  width: 100%;
+  color: $blue;
+  -webkit-box-shadow: inset 0px 0px 0px 1px $gray;
+  box-shadow: inset 0px 0px 0px 1px $gray;
+  height: 50px;
+  line-height: 50px;
+  margin-top: 20px;
+}
+
+/* --------------------------- Checkbox --------------------------- */
+.checkmark-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  // margin-bottom: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: left;
+  input {
+    position: fixed;
+    opacity: 0;
+    cursor: pointer;
+  }
+  &:hover input ~ .checkmark {
+    background-color: $gray;
+  }
+  input:checked {
+    ~ .checkmark {
+      background-color: $blue;
+    }
+    ~ .checkmark:after {
+      display: block;
+    }
+  }
+  .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid $white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: $gray;
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+}
+
+/* --------------------------- End Checkbox --------------------------- */
+
+.select-loading{
+  background-repeat: no-repeat;
+  background-image: url(../../assets/icons/loading.gif);
+  background-position-x: right;
+  background-position-y: center;
+  background-position: 97%;
+}
+

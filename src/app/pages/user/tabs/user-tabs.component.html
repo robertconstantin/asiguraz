@@ -1,0 +1,31 @@
+<section class="top-baner main-content main-content-bg no-margin lg-auto-height">
+  <div class="team-slide-item-wrap user-content">
+    <div class="row row-bg">
+      <div class="col-md-12">
+        <h2 class="m-0" *ngIf="activeTab == 'my-profile'">Profilul Meu</h2>
+        <h2 class="m-0" *ngIf="activeTab == 'change-password'">Schimba Parola</h2>
+      </div>
+      <div class="col-lg-2 col-12 mt-4">
+          <app-user-menu></app-user-menu>
+      </div>
+      <div class="col-lg-8 col-12 mt-4">
+        <app-my-profile *ngIf="activeTab == 'my-profile'"></app-my-profile>
+        <app-change-password *ngIf="activeTab == 'change-password'"></app-change-password>
+      </div>
+      <div class="col-lg-2 col-12 mt-4">
+        <div class="user-profile-top">
+          <img class="rounded-circle img-fluid" src="{{user.profile_picture}}" alt="image" *ngIf="user?.profile_picture.trim()" />
+          <i class="icon-user" *ngIf="!user?.profile_picture.trim()"></i>
+          <h5></h5>
+          <!-- <p>Last Login</p> -->
+          <!-- <p>{{user.last_login | date: 'MM/dd/yy h:mm a'}}</p> -->
+          <p></p>
+          <!-- <p>Account Created</p> -->
+          <!-- <p>{{user.created_date | date: 'MM/dd/yy h:mm a'}}</p> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end pages/tabs -->

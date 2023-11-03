@@ -1,0 +1,32 @@
+<ul class="nav flex-lg-column">
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/user/asigurarile-mele']" routerLinkActive="active">
+      <fa-icon [icon]="['fas', 'shield-alt']" size="lg"></fa-icon>
+      Asigurarile Mele
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " [routerLink]="['/user/my-profile']" routerLinkActive="active">
+      <fa-icon [icon]="['fas', 'user-alt']" size="lg"></fa-icon>
+      Profilul meu
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/user/setari']" routerLinkActive="active">
+      <fa-icon [icon]="['fas', 'cog']" size="lg"></fa-icon>
+      Setari
+    </a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/user/change-password']" routerLinkActive="active">
+        <fa-icon [icon]="['fas', 'key']" size="lg"></fa-icon>
+        Schimba parola
+      </a>
+    </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="logout()">
+      <fa-icon [icon]="['fas', 'sign-out-alt']" size="lg"></fa-icon>
+      Log out
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,3 @@
+<input placeholder="Introdu adresa din buletin" type="text" name="location" [(ngModel)]="model.location"
+    [class]="inputclass"
+    ngx-google-places-autocomplete #places="ngx-places" (onAddressChange)="handleAddressChange($event)" required>

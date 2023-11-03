@@ -1,0 +1,351 @@
+<!-- <app-loading-element *ngIf="loading"></app-loading-element> -->
+
+
+<!-- <form [formGroup]="form" novalidate> -->
+<form [formGroup]="pForm">
+  <div class="row workflow-container">
+    <div class="col-12">
+      <h2 class="fs-title">Proprietar</h2>
+    </div>
+    <div class="col-12">
+
+
+      <!-- <hr /> -->
+      <!-- Date de Contact -->
+      <div class="row" *ngIf="!user">
+        <div class="col-12 col-md-6 pr-md-0">
+          <div class="input-group">
+            <span>Email</span><span class="req">*</span>
+            <input type="email" placeholder="email@yahoo.com" formControlName="email" [email]="true" />
+          </div>
+          <div *ngIf="p.email.invalid && (p.email.dirty || p.email.touched)" class="error-container">
+            <div *ngIf="p.email.errors.required">
+              Emailul este necesar
+            </div>
+            <div *ngIf="p.email.errors.email">
+              Email nu este valid
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="input-group">
+            <span>Telefon</span><span class="req">*</span>
+            <input type="tel" placeholder="0720999999" formControlName="telefonMobil" maxlength="10" />
+          </div>
+          <div *ngIf="p.telefonMobil.invalid && (p.telefonMobil.dirty || p.telefonMobil.touched)"
+            class="error-container">
+            <div *ngIf="p.telefonMobil.errors.required">
+              Numarul de telefon este necesar
+            </div>
+            <div *ngIf="p.telefonMobil.errors.minlength">
+              Numarul de telefon nu este valid
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <hr /> -->
+      <!-- Tip Persoana -->
+      <div class="row">
+        <div class="col-12 col-md-4 custom-control custom-checkbox mb-2">
+          <input type="radio" class="custom-control-input" id="persFizica" formControlName="tipPersoana"
+            value="{{tipuriPersoane.fizica}}" [checked]="tipPersoana == tipuriPersoane.fizica"
+            (click)="tipPersoana = tipuriPersoane.fizica">
+          <label class="custom-control-label" for="persFizica">Persoana Fizica</label>
+        </div>
+        <div class="col-12 col-md-4 custom-control custom-checkbox mb-2">
+          <input type="radio" class="custom-control-input" id="persJurid" formControlName="tipPersoana"
+            value="{{tipuriPersoane.juridica}}" [checked]="tipPersoana == tipuriPersoane.juridica"
+            (click)="tipPersoana = tipuriPersoane.juridica">
+          <label class="custom-control-label" for="persJurid">Persoana Juridica</label>
+        </div>
+        <div class="col-12 col-md-4 custom-control custom-checkbox mb-2">
+          <input type="radio" class="custom-control-input" id="leasing" formControlName="tipPersoana"
+            value="{{tipuriPersoane.leasing}}" [checked]="tipPersoana == tipuriPersoane.leasing"
+            (click)="tipPersoana = tipuriPersoane.leasing">
+          <label class="custom-control-label" for="leasing">Leasing</label>
+        </div>
+      </div>
+
+      <!-- <hr /> -->
+      <!-- Date Firma -->
+      <div class="row" [hidden]="tipPersoana === tipuriPersoane.fizica">
+        <div class="col-12 col-md-6 pr-md-0">
+          <div class="input-group">
+            <span>Cod Unic de Inregistrare (CUI)</span><span class="req">*</span>
+            <input type="text" placeholder="RO1234324" formControlName="codDeInregistrare" maxlength="13" />
+            <div *ngIf="p.codDeInregistrare.invalid && (p.codDeInregistrare.dirty || p.codDeInregistrare.touched)"
+              class="error-container">
+              <div *ngIf="p.codDeInregistrare.errors.required">
+                CUI-ul este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="input-group">
+            <span>Nume Societate</span><span class="req">*</span>
+            <input type="number" placeholder="Compania Mea SRL" formControlName="societate" maxlength="13" />
+            <div *ngIf="p.societate.invalid && (p.societate.dirty || p.societate.touched)" class="error-container">
+              <div *ngIf="p.societate.errors.required">
+                Numele societati este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <hr /> -->
+      <!-- Sofer principal -->
+      <div class="row" [hidden]="tipPersoana !== tipuriPersoane.fizica">
+        <div class="col-12 col-md-6 pr-md-0">
+          <div class="input-group">
+            <span>Nume</span><span class="req">*</span>
+            <input type="text" placeholder="Popescu" formControlName="nume" />
+            <div *ngIf="p.nume.invalid && (p.nume.dirty || p.nume.touched)" class="error-container">
+              <div *ngIf="p.nume.errors.required">
+                Numele este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="input-group">
+            <span>Prenume</span><span class="req">*</span>
+            <input type="text" placeholder="Ionut" formControlName="prenume" />
+            <div *ngIf="p.prenume.invalid && (p.prenume.dirty || p.prenume.touched)" class="error-container">
+              <div *ngIf="p.prenume.errors.required">
+                Prenumele este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [hidden]="tipPersoana !== tipuriPersoane.fizica">
+        <div class="col-12 col-md-6 col-lg-3 pr-md-0">
+          <div class="input-group">
+            <span>Serie Buletin</span><span class="req">*</span>
+            <input type="text" placeholder="XH" formControlName="serieCi" maxlength="2" />
+            <div *ngIf="p.serieCi.invalid && (p.serieCi.dirty || p.serieCi.touched)" class="error-container">
+              <div *ngIf="p.serieCi.errors.required">
+                Seria de buletin este necesara
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12  col-md-6 col-lg-3 pr-lg-0">
+          <div class="input-group">
+            <span>Numar Buletin</span><span class="req">*</span>
+            <input type="number" placeholder="123456" formControlName="numarCi" />
+            <div *ngIf="p.numarCi.invalid && (p.numarCi.dirty || p.numarCi.touched)" class="error-container">
+              <div *ngIf="p.numarCi.errors.required">
+                Numarul de buletin este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 pr-md-0">
+          <div class="input-group">
+            <!-- Cod Numeric Personal  -->
+            <span>CNP</span><span class="req">*</span>
+            <input type="number" placeholder="2881212999999" formControlName="codNumericPersonal" minlength="13"
+              maxlength="13" />
+            <div *ngIf="p.codNumericPersonal.invalid && (p.codNumericPersonal.dirty || p.codNumericPersonal.touched)"
+              class="error-container">
+              <div *ngIf="p.codNumericPersonal.errors.required">
+                Codul numeric personal este necesar
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="input-group">
+            <span>Obtinere Permis</span><span class="req">*</span>
+            <!-- <ng-datepicker formControlName="dataPermisConducere" [options]="options" class="date-input"></ng-datepicker> -->
+            <input type="date" formControlName="dataPermisConducere" class="date-input"
+              max="{{dataPermisConducereMax | date: 'yyyy-MM-dd'}}">
+            <div *ngIf="p.dataPermisConducere.invalid && (p.dataPermisConducere.dirty || p.dataPermisConducere.touched)"
+              class="error-container">
+              <div *ngIf="p.dataPermisConducere.errors.required">
+                Data de optinere permis este necesara
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <hr /> -->
+      <!-- Adresa proprietar din buletin sau adresa firma  -->
+      <!-- <input type="text" [(ngModel)]="adresaString" [ngModelOptions]="{standalone: true}"
+                      placeholder="Google search maybe ..." /> -->
+      <!-- && !proprietar.adresa.adresaString, '' :  -->
+      <!-- <div class="row">
+              <div class="col col-md-12 custom-margin">
+                <div class="input-group">
+                  <span>Adresa {{ tipPersoana === tipuriPersoane.fizica ? 'din buletin' : '' }}</span><span
+                    class="req">*</span>
+      
+                  <app-address (messageEvent)="getAddress($event)" [location]="proprietar.adresa.adresaString"
+                    [inputclass]="(!proprietar.adresa.adresaString && p.adresa.invalid ? ' ng-invalid ' : '') + ( p.adresa.touched ? ' ng-touched ' : '')">
+                  </app-address>
+                  <div *ngIf="p.adresa.invalid && (p.adresa.dirty || p.adresa.touched)" class="error-container">
+                    <div *ngIf="!proprietar.adresa.adresaString">
+                      Adresa este necesara
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+      <!-- [hidden]="!proprietar.adresa.adresaString" -->
+
+      <div formGroupName="adresa">
+        <div class="row">
+          <div class="col-12 col-md-6 custom-margin pr-md-0">
+            <div class="input-group">
+              <span>Judet</span><span class="req">*</span>
+              <!-- <input type="text" placeholder="Alba" formControlName="judet" /> -->
+              <select formControlName="judet" [ngClass]="{'select-loading': loadingJudete}"
+                (change)="getLocalitati(a.judet.value);">
+                <option selected [ngValue]="null">Alegeti o optiune</option>
+                <option *ngFor="let item of judete" [ngValue]="item.cod"
+                  [selected]="item.cod === proprietar.adresa.judet">
+                  {{ item.nume }}
+                </option>
+              </select>
+              <div *ngIf="a.judet.invalid && (a.judet.dirty || a.judet.touched)" class="error-container">
+                <div *ngIf="a.judet.errors.required">
+                  Judetul este necesar
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 custom-margin">
+            <div class="input-group">
+              <span>Localitate</span><span class="req">*</span>
+              <!-- <input type="text" placeholder="Alba-Iulia" formControlName="localitate" /> -->
+              <select formControlName="localitate" [ngClass]="{'select-loading': loadingLocalitati}">
+                <option selected [ngValue]="null">Alegeti o optiune</option>
+                <option *ngFor="let item of localitati" [ngValue]="item.cod.toString()"
+                  [selected]="item.cod == proprietar.adresa.localitate">
+                  {{ item.nume | titlecase }}
+                </option>
+              </select>
+              <div *ngIf="a.localitate.invalid && (a.localitate.dirty || a.localitate.touched)" class="error-container">
+                <div *ngIf="a.localitate.errors.required">
+                  Orasul este necesar
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" [hidden]="a.localitate.errors || a.judet.errors">
+          <div class="col-12 col-md-9 col-lg-10 custom-margin pr-md-0">
+            <div class="input-group">
+              <span>Strada</span><span class="req">*</span>
+              <input type="text" placeholder="Strada Valise Alexandrescu" formControlName="strada" />
+              <div *ngIf="a.strada.invalid && (a.strada.dirty || a.strada.touched)" class="error-container">
+                <div *ngIf="a.strada.errors.required">
+                  Strada este necesara
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-3 col-lg-2 custom-margin">
+            <div class="input-group">
+              <span>Numar</span><span class="req">*</span>
+              <input type="number" placeholder="27" formControlName="numar" />
+              <div *ngIf="a.numar.invalid && (a.numar.dirty || a.numar.touched)" class="error-container">
+                <div *ngIf="a.numar.errors.required">
+                  Numarul este necesar
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" [hidden]="a.localitate.errors || a.judet.errors">
+          <div class="col-12 col-md-4 custom-margin pr-md-0">
+            <div class="input-group">
+              <span>Bloc</span>
+              <input type="text" placeholder="Q18" formControlName="bloc" />
+            </div>
+          </div>
+          <div class="col-12 col-md-4 custom-margin pr-md-0">
+            <div class="input-group">
+              <span>Scara</span>
+              <input type="text" placeholder="A" formControlName="scara" />
+            </div>
+          </div>
+          <div class="col-12 col-md-4 custom-margin">
+            <div class="input-group">
+              <span>Apartament</span>
+              <input type="text" placeholder="9" formControlName="apartament" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <!-- Conducatori Auto / Soferi -->
+    <div class="col-12">
+      <hr />
+    </div>
+    <div class="col-8 custom-control custom-checkbox mb-2 text-left">
+      <input type="checkbox" class="custom-control-input" id="soferPrincipal" [(ngModel)]="soferLaFelCuProprietar"
+        [ngModelOptions]="{standalone: true}">
+      <label class="custom-control-label" for="soferPrincipal">Soferul principal acelasi cu proprietarul</label>
+    </div>
+    <div class="col-md-4">
+      <input type="button" class="btn btn-gray btn-sm text-full" value="Adauga inca un sofer" (click)="addSofer()" />
+    </div>
+
+    <div class="col-md-12" *ngIf="!soferLaFelCuProprietar">
+      <app-sofer [(sofer)]="soferPrincipal"></app-sofer>
+      <hr />
+    </div>
+    <div class="col-12" *ngFor="let item of soferi; let i = index">
+      <div class="row p-o">
+        <div class="col-md-12">
+          <app-sofer [(sofer)]="soferi[i]"></app-sofer>
+        </div>
+        <div class="offset-8 col-4">
+          <input type="button" class="btn btn-danger btn-sm" value="Sterge" (click)="removeSofer(i)" />
+        </div>
+      </div>
+      <hr *ngIf="soferi.length > 1" />
+    </div>
+
+    <!-- // TODO -->
+    <!-- <div class="col col-md-12">
+            <label class="checkmark-container">
+              Sunt de acord cu <a href="">Termenii și condițiile</a> AsigurAZ.ro
+        
+              <input type="checkbox" checked="true">
+              <span class="checkmark"></span>
+            </label>
+          </div> -->
+    <div class="col-12 custom-control custom-checkbox mb-2 text-left">
+      <input type="checkbox" class="custom-control-input" id="termeni" formControlName="termeni">
+      <label class="custom-control-label" for="termeni">Sunt de acord cu <a href="/" target="_blank">Termenii și
+          condițiile</a>
+        AsigurAZ.ro <span class="req">*</span></label>
+      <div *ngIf="p.termeni.invalid && (p.termeni.dirty || p.termeni.touched)" class="error-container mt-1">
+        <div *ngIf="p.termeni.errors.required">
+          Termenii sunt necesari
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <input type="button" name="next" class="next action-button" value="Continua" (click)="goToStep('vehicul')" />
+    </div>
+    <!-- <div class="alert alert-danger col-12">
+                <pre><code>{{ getAllErrors(pForm) | json }}</code></pre>
+            </div> -->
+  </div>
+</form>
+<!-- <div class="col col-md-4 col-sm-12">
+              <app-info-proprietar></app-info-proprietar>
+            </div> -->

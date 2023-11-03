@@ -1,0 +1,37 @@
+<form [formGroup]="myProfileForm" (ngSubmit)="updateMyProfile()">
+  <div class="input-group">
+    <span>Prenume</span>
+    <input autocomplete="given-name" type="text" placeholder="First Name" [(ngModel)]="user.first_name" formControlName="first_name">
+  </div>
+  <div class="input-group">
+    <span>Nume de Familie</span>
+    <input autocomplete="family-name" type="text" placeholder="Last Name" [(ngModel)]="user.last_name" formControlName="last_name">
+  </div>
+  <div class="input-group">
+    <span>Numar de telefon</span>
+    <input autocomplete="tel" type="text" placeholder="Phone" [(ngModel)]="user.phone" formControlName="phone">
+  </div>
+  <div class="input-group">
+    <span>Adresa de email</span>
+    <input autocomplete="email" type="text" placeholder="Email" [(ngModel)]="user.email" formControlName="email" readonly>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-6">
+      <button type="button" class="button-type-2 style-extended" [disabled]="!objectHasBeenModified()"
+      (click)="undoMyProfile()">
+        <span>
+          Sterge modificarile
+        </span>
+      </button>
+    </div>
+    <div class="col col-md-6">
+    <button type="submit" class="button-type-2 style-extended" [disabled]="!myProfileForm.valid || !objectHasBeenModified()">
+      <span>
+        Salveaza
+      </span>
+    </button>
+  </div>
+  </div>
+
+</form>

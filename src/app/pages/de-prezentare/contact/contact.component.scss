@@ -1,0 +1,38 @@
+.contact-index-desc-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background-color: #f7f7f7;
+    transform: translateY(100%);
+    transition: all 0.5s;
+
+    &.active {
+        transform: translateY(0);
+        z-index: 1;
+    }
+    .fa-cancel {
+        position: absolute;
+        right: 0;
+        font-size: 24px;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}
+
+.contact-button {
+    position: absolute;
+    bottom: 20px;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    display: flex;
+
+    .button-type-2 {
+        margin: 0 auto;
+        color: #fff;
+    }
+}

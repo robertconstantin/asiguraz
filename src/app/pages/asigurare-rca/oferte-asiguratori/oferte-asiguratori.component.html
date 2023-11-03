@@ -1,0 +1,137 @@
+<form [formGroup]="form" novalidate>
+    <div class="row workflow-container">
+        <!--  -->
+
+        <div class="col-12">
+            <h2 class="fs-title">Oferte</h2>
+        </div>
+        <div class="row m-0 align-items-center">
+            <div class="col-md-4 pr-md-0">
+                <div class="input-group">
+                    <span>Data Inceput</span>
+                    <input type="date" class="input-group" formControlName="dataInceput"
+                        min="{{theMinDate | date: 'yyyy-MM-dd'}}" max="{{theMaxDate | date: 'yyyy-MM-dd'}}">
+                </div>
+            </div>
+            <div class="col-md-4 pr-md-0">
+                <div class="input-group">
+                    <span>Valabil pana in data</span>
+                    <input type="text" class="disabled" [value]="valabilPanaInData" disabled />
+                </div>
+            </div>
+            <div class="col-md-4 pr-md-0">
+                <div class="input-group">
+                    <span>Durata</span>
+                    <select formControlName="durata" (change)="onDurataChange()">
+                        <option disabled>Alegeti o optiune</option>
+                        <option value="1">1 luna</option>
+                        <option value="3">3 luni</option>
+                        <option value="6">6 luni</option>
+                        <option value="12" selected>12 luni</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 text-center" *ngIf="polita?.vehicul?.marca">
+          <div class="input-group">
+            <span>&nbsp;</span>
+            <input type="button" class="action-button oferte" (click)="genereazaOferte()" value="Vezi oferte">
+          </div>
+        </div> -->
+        </div>
+    </div>
+</form>
+<div class="row workflow-container">
+    <!--To do: alta conditie pentru "completeaza datele..."-->
+    <div class="col text-center">
+        <h2 class="fs-title"
+            *ngIf="polita?.vehicul?.marca && polita?.vehicul?.model && polita?.vehicul?.numarInmatriculare">
+            {{ polita?.vehicul?.numarInmatriculare }} - {{ polita?.vehicul?.marca }} {{ polita?.vehicul?.model }}
+        </h2>
+        <p *ngIf="!polita?.vehicul?.marca" class="text-danger">
+            Completeaza datele pentru a vedea ofertele
+        </p>
+    </div>
+
+</div>
+
+<div class="row workflow-container mt-4">
+    <div class="col-lg-12" *ngFor="let item of societatiFiltrate"
+        [hidden]="item.cotatie?.eroare || !item.cotatie?.prima">
+        <div class="card-item" [ngClass]="{'disabled': !(item.cotatie && item.cotatie.prima)}">
+
+            <div class="col-12 col-md-3 d-flex align-items-center">
+                <div class="image">
+                    <img src="assets/asiguratori/{{ item.Nume }}.png" alt="" />
+                </div>
+            </div>
+            <div class="col-12 col-md-3 d-flex align-items-center">
+                <div class="text">
+                    <a class="sub-title">{{ item.Nume }}</a>
+                </div>
+                <div *ngIf="item.isLoading">
+                    <app-loading-element></app-loading-element>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <a class="button-type-3 type-2" *ngIf="item.cotatie && item.cotatie.prima"
+                    (click)="finalizareComanda(item.cotatie, item.Nume)" [hidden]="item.cotatie?.eroare">
+                    <span>
+                        <i>{{ item.cotatie?.prima }} RON</i>
+                    </span>
+                    <span>
+                        <i>Cumpara</i>
+                    </span>
+                </a>
+                <!-- <a *ngIf="item.cotatie && !item.cotatie.eroare">
+            <span><i> Cod[{{ item.cotatie.codCotatie }}] </i></span> <br />
+            <span><i> Id[{{ item.cotatie.identificatorOferta }}] </i></span> <br />
+            <span><i> {{ item.cotatie.comisionValoare }}RON </i></span> <br />
+            <span><i> {{ item.cotatie.comisionProcent }}% </i></span> <br />
+          </a> -->
+                <a *ngIf="item.cotatie?.eroare">
+                    <span>
+                        <i>Asiguratorul nu a returnat tarif</i>
+                    </span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="loadingOferte">
+    <app-loading-element></app-loading-element>
+</div>
+
+<div class="col-12">
+    <input type="button" name="previous" class="previous action-button" value="Inapoi" (click)="goToStep('vehicul')" />
+</div>
+
+<!--
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let item of cotatiiEroare">
+      <div class="card-item">
+        <div class="image">
+          <img
+            src="assets/asiguratori/{{
+              item.SocietateNume.replace(' ', '').toLowerCase()
+            }}.png"
+            alt=""
+          />
+        </div>
+        <div class="text">
+          <a class="sub-title">{{ item.SocietateNume }}</a>
+          <div>Asiguratorul nu a returnat tarif</div>
+        </div>
+        <a class="button-type-3 type-2 open-panel open-effect" *ngIf="item.prima">
+          <span>
+            <i>{{ item.prima }} RON</i>
+          </span>
+          <span>
+            <i>Cumpara</i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div> -->

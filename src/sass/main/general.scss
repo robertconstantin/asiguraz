@@ -1,0 +1,520 @@
+//general
+.top-baner {
+    position: relative; 
+    width: 100%; 
+    min-height:  calc(100vh - 132px);
+
+    &.custom-container {
+        padding: 0 0 20px;
+    }
+}
+
+%button-type {
+    position: relative; 
+    display: inline-block; 
+    height: 55px; 
+    border-radius: 27px; 
+    background: $primary; 
+    padding: 0px 35px; 
+    font-weight: 700; 
+    color: $white; 
+    text-align: center; 
+    @extend .font-type-2;
+    border: 2px solid rgba(0,0,0,0); 
+    font-size: 13px; 
+    letter-spacing: 1.2px; 
+    line-height: 51px;
+     text-transform: uppercase; 
+     overflow: hidden;
+	&:hover {
+        background: none; 
+        border-color: $primary;
+        color: $white;
+        span {@include transform(translateY(100%));}
+        i {color: $primary;}
+    }
+	& span {
+        position: relative; 
+        display: inline-block; 
+        @include transition (all 0.25s ease-out);
+        &:before {
+            content: attr(data-text); 
+            position: absolute; 
+            left: 0px; top: 0px; 
+            width: 100%; 
+            height: 100%; 
+            line-height: 51px; 
+            color: $primary; 
+            @include transition (all 0.25s ease-out); 
+            @include transform(translateY(-100%));
+        }
+    }
+	&.type-2 {
+        border-radius: 0px; 
+        border-color: $black; 
+        color: $black; 
+        background: none; 
+        padding: 0px;
+        span {
+            padding: 0px 75px;
+            &:before {
+                color: $white; 
+                background: $black; 
+                width: 100%; 
+                height: 100%; 
+                position: absolute; 
+                left: 0px; 
+                top: 0px;
+            }
+        }
+    }
+	& i {
+        font-size: 16px; 
+        display: inline-block; 
+        padding-right: 15px;
+        @include transition (all 0.25s ease-out);
+    }
+	&.lg-padding {padding: 0px 60px;}
+}
+.button-type-1{
+    @extend %button-type;
+    &:disabled{
+        background: $gray;
+        cursor: not-allowed;
+        color: $white;
+    }
+    &:hover {
+        color: $white; 
+        border: none;
+    }
+}
+.button-type-white{
+    @extend %button-type;
+	&:hover {
+        background: none; 
+        border-color: $white;
+    }
+    & span:before {
+        color: $white;
+    }
+}
+.btn-facebook { 
+    @include button-variant($facebook, $white, $facebook, $facebook); 
+}
+.btn-google { 
+    @include button-variant($google, $white, $google, $google); 
+}
+.btn-gray { 
+    @include button-variant($gray, $white, $gray, $gray); 
+}
+.form-control{
+    &:focus {
+        box-shadow: 0 0 0 0.1rem rgba($primary, 0.25);
+        background: transparent;
+    }
+}
+
+.nav-menu > ul > li{
+    a{
+        &:hover{
+            text-decoration: none;
+        }
+        &::before{
+            background: $primary;
+        }
+    }
+}
+
+
+//footer
+.footer-nav{
+    margin-bottom: 0;
+}
+.footer{
+    .container, .row{
+        &::before, &::after{
+            display: none;
+        }
+    }
+    &.type-2{
+        background: $white;
+    }
+    .top-bar{
+        padding: 15px 0px;
+    }
+    .logo-f{
+        img{
+            width: 80px;
+        }
+    }
+    a{
+        color: $gray;
+        margin: 0 0.4rem;
+        &:hover{
+            color: $primary;
+        }
+    }
+    .nav-footer{
+        @include media-breakpoint-down(md) { 
+            align-items: center !important;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+    }
+    .logo-footer{
+        opacity: 0.5;
+        margin: 0;
+        img{
+            width: 80px;
+        }
+        &:hover{
+            opacity: 1;
+        }
+    }
+    .bottom-bar{
+        padding: 15px 0px;
+        .copyr{
+            color: $gray;
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+}
+
+
+//user module
+.user-content{
+    padding: 90px 0px 30px 0px;
+}
+app-user-menu{
+    .nav-item{
+        @include media-breakpoint-down(lg) { 
+            margin-right: 15px;
+        }
+    }
+}
+.card{
+    @include media-breakpoint-down(sm) { 
+        padding: 10px;
+    }
+}
+.asig-logo{
+    @include media-breakpoint-down(sm) { 
+        margin-right: 1rem;
+    }
+}
+
+//test page
+.test{
+    padding: 80px 0;
+    min-height: calc(100vh - 170px);
+}
+
+//login
+.login{
+    height: 100%;
+    input{
+        background: transparent;
+    }
+    .rel-icon{
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.25;
+    }
+    form{
+        width: 100%;
+    }
+    a{
+        opacity: 0.5;
+        text-decoration: none;
+        &:hover, &.logo-login{
+            opacity: 1;
+        }
+    }
+    .logo-login {
+        img {
+            width: 100px;
+        }
+    }
+}
+.or{
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid rgba($black,0.1); 
+    line-height: 0.2em;
+    margin: 1rem 0 1.2rem;
+    span { 
+        background: $white; 
+        padding: 0 1rem; 
+    }
+}
+.popup{
+    .close{
+        top: 1rem;
+        right: 1rem;
+    }
+}
+.shop-panel{
+    width: 30%;
+    max-width: 450px;
+    @include media-breakpoint-down(lg) { 
+        width: 40%;
+    }
+    @include media-breakpoint-down(md) { 
+        width: 50%;
+    }
+    @include media-breakpoint-down(sm) { 
+        width: 100%;
+        max-width: 100%;
+    }
+}
+.shop-panel-wrap{
+    padding: 1rem;
+    bottom: 0;
+}
+
+// bootstrap fix 
+.custom-control-input{
+    width: 0;
+}
+
+// asigurare rca
+
+.main-content {
+    /*background = gradient + image pattern combo*/
+    border: 0px !important;
+    background: $gradient;
+}
+
+/*form styles*/
+@media (max-width: 1400px){
+    #msform {
+        padding-top: 30px !important;
+    }
+}
+.msform {
+    width: 100%;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+
+    fieldset {
+        background: $white;
+        border: 0 none;
+        border-radius: 3px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        padding: 20px 0;
+        box-sizing: border-box;
+        width: 98%;
+        margin: 0 auto;
+        position: relative;
+
+        &:not(:first-of-type) {
+            display: none;
+        }
+
+        &.last-step {
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+
+    .action-button {
+        width: auto;
+        background: $primary;
+        font-weight: bold;
+        color: #fff;
+        border: 0 none;
+        border-radius: 1px;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 10px 5px;
+        &:hover, &:focus {
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px $primary;
+        }
+        &.previous {
+            background: $gray;
+        }
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #000;
+        }
+        &.oferte {
+            margin: 0 0 10px 0;
+            width: 100%;
+        }
+    }
+}
+
+/*headings*/
+.fs-title {
+    font-size: 36px;
+    display: block;
+    line-height: 40px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 40px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+.progressbar {
+    margin: 30px 0;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+    li {
+        list-style-type: none;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 15px;
+        letter-spacing: 1.4px;
+        width: 33.33%;
+        float: left;
+        position: relative;
+        cursor: pointer;
+        &:before {
+            content: counter(step);
+            counter-increment: step;
+            width: 20px;
+            font-size: 15px;
+            letter-spacing: 1.4px;
+            line-height: 20px;
+            display: block;
+            color: $primary;
+            background: $white;
+            border-radius: 3px;
+            margin: 0 auto 5px auto;
+            z-index: 2;
+        }
+        &:after {
+            content: '';
+            width: 90%;
+            height: 2px;
+            background: $white;
+            position: absolute;
+            left: -50%;
+            top: 9px;
+            margin-left: 5%;
+        }
+        &:first-child:after {
+            /*connector not needed before the first step*/
+            content: none;
+        }
+        &.active {
+            color: $primary;
+            &:before, &:after{
+                background: $primary;
+                color: $white;
+            }
+        }
+    }
+}
+
+.custom-checkbox{
+    .custom-control-input:indeterminate ~ .custom-control-label::before{
+        border-color: $gray;
+        background-color: $gray;
+    }
+    .custom-control-input:checked ~ .custom-control-label {
+        color: $primary;
+    }
+}
+
+.custom-control-label{
+    cursor: pointer;
+}
+
+.custom-control{
+    padding-left: 2.5rem;
+}
+
+input, select, textarea{
+    font-size: 1rem;
+    font-weight: 500;
+    background: none;
+    &:focus{
+        border: 1px solid $primary;
+    }
+}
+
+input {
+    &.disabled {
+        color: $green;
+        background: #efefef;
+    }
+}
+
+.date-input {
+    @include media-breakpoint-down(md) { 
+        width: 100%;
+    }
+}
+
+.ngx-datepicker-container {
+    width: 100%;
+    .ngx-datepicker-input {
+        padding: 9px 9px 9px 15px !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        border: 1px solid $gray !important;
+        // &.ng-valid {
+        //     border: 1px solid $green !important;
+        // }
+    }
+    .ngx-datepicker-calendar-container {
+        z-index: 1;
+    }
+    .is-selected {
+        background: $primary !important;
+    }
+}
+
+.text-full{
+    white-space: normal;
+}
+
+//workflow
+.workflow {
+    .workflow-container {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    select {
+        text-transform: capitalize;
+    }
+}
+app-address {
+    width: 100%;
+}
+
+.home {
+    .bg {
+        left: 0;
+        right: 0;
+    }
+}
+
+.error-container {
+    display: flex;
+    font-size: 14px;
+    color: $red;
+    margin-top: -10px;
+    padding-bottom: 5px;
+}
+
+.total {
+    color: $green;
+}

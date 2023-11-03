@@ -1,0 +1,79 @@
+<!--==========HEADER============-->
+<header class="header style-center" clickOutside (clickOutside)="closeMenu()">
+  <div class="header-wrap d-flex align-items-center justify-content-between">
+
+    <div class="burger">
+      <i></i>
+    </div>
+
+    <a [routerLink]="['']" class="logo">
+      <img src="assets/asiguraz-logo-big2.png" alt="">
+    </a>
+
+    <nav>
+      <div class="nav-menu">
+        <a [routerLink]="['']" class="logo-mobile">
+            <img src="assets/logo-square.png" alt="">
+          </a>
+        <ul>
+          <li routerLinkActive="active">
+            <a (click)="toggleMenu()" [routerLink]="['/asigurare-rca.html']">
+              <span>Asigurare RCA</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a (click)="toggleMenu()" [routerLink]="['/servicii.html']">
+              <span>Servicii</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a (click)="toggleMenu()" [routerLink]="['/despre-noi.html']">
+              <span>Despre noi</span>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a (click)="toggleMenu()" [routerLink]="['/contact.html']">
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+        <div class="align-bottom">
+            <div class="mobile-footer">
+              <div class="folow">
+                <a href="http://facebook.com" target="_black">
+                  <fa-icon [icon]="['fab', 'facebook']" size="lg"></fa-icon>
+                </a>
+                <a href="http://pinterest.com" target="_black">
+                  <fa-icon [icon]="['fab', 'pinterest']" size="lg"></fa-icon>
+                </a>
+                <a href="http://linkedin.com" target="_black">
+                  <fa-icon [icon]="['fab', 'linkedin']" size="lg"></fa-icon>
+                </a>
+                <a href="http://instagram.com" target="_black">
+                  <fa-icon [icon]="['fab', 'instagram']" size="lg"></fa-icon>
+                </a>
+              </div>
+              <span class="copyright">&copy; 2018 asigurAZ.ro All Rights Reserve</span>
+            </div>
+          </div>
+      </div>
+    </nav>
+
+    <div class="header-icon">
+      <a id="loggin-button" class="open-panel open-effect" data-rel="data-user" [hidden]="user">
+        <!-- [routerLink]="['~/login.html']" -->
+        <i class="icon-user"></i> Intra in cont
+      </a>
+      <a data-rel="data-user" [hidden]="!user" [routerLink]="['/user']">
+        <i  [hidden]="user?.profile_picture.trim()" class="icon-user"></i>
+        <img class="profile-picture" src="{{user?.profile_picture}}" [hidden]="!user?.profile_picture.trim()">
+        {{ user ? (user.full_name.trim() ? user.full_name : user.email ) : ''  }}
+      </a>
+      <!-- <a class="open-panel open-effect" data-rel="data-shop" [hidden]="!user">
+        <span>9</span>
+        <i class="icon-newspaper"></i>
+      </a> -->
+    </div>
+
+  </div>
+</header>

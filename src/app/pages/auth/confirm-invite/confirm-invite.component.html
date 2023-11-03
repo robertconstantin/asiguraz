@@ -1,0 +1,61 @@
+<!-- auth/confirm-invite -->
+<div class='sample-form-2 login'>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class='form-description'>
+      <h3>Invite Confirmation</h3>
+      <p *ngIf='loading'>Validating your email address.</p>
+      <p *ngIf='!loading && !error && !success'>Hey {{userDetails.first_name}}, we have successfully confirmend your email {{userDetails.email}}</p>
+      <p *ngIf='!loading && !error && !success'>Please choose a password to continue to the site</p>
+    </div>
+    <!--new password-->
+    <div class="form-group" *ngIf="!loading && !error && !success" [ngClass]="{'has-danger': form.get('newPassword').touched && form.get('newPassword').errors, 'has-success': form.get('newPassword').touched && form.get('newPassword').valid}">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="sli-lock"></i>
+        </span>
+        <input type="password" name="newPassword" class="form-control" placeholder="New Password" formControlName="newPassword" [(ngModel)]="newPassword"
+          [ngClass]="{'form-control-danger': form.get('newPassword').touched && form.get('newPassword').errors, 'form-control-success': form.get('newPassword').touched && form.get('newPassword').valid}">
+      </div>
+    </div>
+    <!--confirm password-->
+    <div class="form-group" *ngIf="!loading && !error && !success" [ngClass]="{'has-danger': form.get('confirmNewPassword').touched && form.get('confirmNewPassword').errors, 'has-success': form.get('confirmNewPassword').touched && form.get('confirmNewPassword').valid}">
+      <label>Confirm password</label>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="sli-lock"></i>
+        </span>
+        <input type="password" name="confirmNewPassword" class="form-control" placeholder="Confirm Password" formControlName="confirmNewPassword"
+          [ngClass]="{'form-control-danger': form.get('confirmNewPassword').touched && form.get('confirmNewPassword').errors, 'form-control-success': form.get('confirmNewPassword').touched && form.get('confirmNewPassword').valid}">
+      </div>
+    </div>
+    <!--messages here-->
+    <div class="form-group has-success">
+      <div *ngIf="success" class="form-control-feedback">
+        We successfully change your password
+      </div>
+    </div>
+    <div class="form-group has-danger">
+      <div *ngIf="error" class="form-control-feedback">
+        Sorry but credentials expired.
+        <a routerLink="/auth/forgot-password" style="color: #5292ca !important;">Resend email</a>
+      </div>
+    </div>
+    <div class="form-group has-danger">
+      <div *ngIf="form.get('confirmNewPassword').touched &&
+      form.get('newPassword').touched && form.get('confirmNewPassword').valid &&
+      form.get('newPassword').valid && form.get('confirmNewPassword').value !== form.get('newPassword').value" class="form-control-feedback">
+        Passwords don't match
+      </div>
+    </div>
+    <!--submit button-->
+    <div class="form-group">
+      <button class="btn btn-success btn-rounded" type="submit"
+      *ngIf="!loading && !success && !error"
+      [disabled]="!form.valid">
+        Confirm
+      </button>
+      <app-loading-element *ngIf="loading && !success"></app-loading-element>
+    </div>
+  </form>
+</div>
+<!-- end auth/confirm-invite -->

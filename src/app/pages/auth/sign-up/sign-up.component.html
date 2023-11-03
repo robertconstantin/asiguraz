@@ -1,0 +1,109 @@
+<!-- user/sign-up -->
+<div class="d-flex align-items-center login">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-12 text-center mb-4">
+      <a [routerLink]="['']" class="logo-login">
+        <img src="assets/logo-square.png" alt="">
+      </a>
+    </div>
+    <h4 class="mb-2">Creaza-ti un cont</h4>
+    <hr>
+    <!-- <button type="button" class="btn btn-facebook btn btn-block mb-2">
+      <fa-icon [icon]="['fab', 'facebook']" size="md"></fa-icon>
+      Continua folosind Facebook
+    </button>
+    <button type="button" class="btn btn-google btn btn-block mb-2">
+      <fa-icon [icon]="['fab', 'google']" size="md"></fa-icon>
+      Continua folosind  Google
+    </button>
+    <p class="or">
+      <span>sau</span>
+    </p> -->
+    <!-- FIRST NAME -->
+    <div class="input-group mb-2">
+      <input class="form-control" type="text" name="name" placeholder="Introdu prenumele si numele" formControlName="name"
+        [(ngModel)]="userRegister.first_name" autocomplete="name" />
+      <span class="rel-icon">
+        <fa-icon [icon]="['fas', 'user-alt']" size="md"></fa-icon>
+      </span>
+    </div>
+    <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)"
+      class="text-danger mb-2">
+      <div *ngIf="form.controls['name'].errors.required">
+        Numele este obligatoriu
+      </div>
+    </div>
+    <!-- EMAIL -->
+    <div class="input-group mb-2">
+      <input class="form-control" type="email" name="email" placeholder="Email" formControlName="email"
+        [(ngModel)]="userRegister.email" autocomplete="email" />
+      <span class="rel-icon">
+        <fa-icon [icon]="['fas', 'user-alt']" size="md"></fa-icon>
+      </span>
+    </div>
+    <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)"
+      class="text-danger mb-2">
+      <div *ngIf="form.controls['email'].errors.required">
+        Emailul este obligatoriu
+      </div>
+      <div *ngIf="form.controls['email'].errors.email">
+        Emailul trebuie sa fie valid
+      </div>
+    </div>
+    <!-- PASSWORD -->
+    <div class="input-group mb-2">
+      <input class="form-control" type="password" name="password" placeholder="Parola" formControlName="password"
+        [(ngModel)]="userRegister.password" autocomplete="current-password" />
+      <span class="rel-icon">
+        <fa-icon [icon]="['fas', 'key']" size="md"></fa-icon>
+      </span>
+    </div>
+    <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
+      class="text-danger mb-2">
+      <div *ngIf="form.controls['password'].errors.required">
+        Parola este obligatorie
+      </div>
+      <div *ngIf="form.controls['password'].errors.minlength">
+        Sunt necesare minim 4 caractere
+      </div>
+    </div>
+    <div class="col-12 custom-control custom-checkbox mb-2">
+      <input type="checkbox" class="custom-control-input" id="suntDeAcord" [(ngModel)]="suntDeAcord"
+        formControlName="suntDeAcord">
+      <label class="custom-control-label" for="suntDeAcord">Am citit și sunt de acord cu Termenii și Condițiile, cu Politicile de Confidențialitate și Utilizare a cookie-urilor și tehnologiilor similare.
+        similare.</label>
+      <div *ngIf="(form.controls['suntDeAcord'].dirty || form.controls['suntDeAcord'].touched)"
+        class="text-danger mb-2">
+        <div *ngIf="!suntDeAcord">
+          Acest camp este obligatoriu
+        </div>
+      </div>
+    </div>
+    <div class="col-12 custom-control custom-checkbox mb-2">
+      <input type="checkbox" class="custom-control-input" id="maAbonez" [(ngModel)]="maAbonez"
+        formControlName="maAbonez">
+      <label class="custom-control-label" for="maAbonez">Vreau să primesc cele mai bune oferte. Confirm că am peste 16 ani.</label>
+      <div *ngIf="(form.controls['maAbonez'].dirty || form.controls['maAbonez'].touched)"
+        class="text-danger mb-2">
+        <div *ngIf="!maAbonez">
+          Acest camp este obligatoriu
+        </div>
+      </div>
+    </div>
+    <!-- BUTTONS -->
+    <button type="button" class="btn btn-primary btn btn-block mb-2" [disabled]="loading" type="submit">Continua</button>
+    <div *ngIf="error" class="text-danger mb-2 text-center">
+      <div>
+        Ai deja un cont! <a [routerLink]="['/login.html']">Intra in cont</a> sau <a [routerLink]="['/forgot-password.html']">Recupereaza parola</a>
+      </div>
+    </div>
+    <!-- FOOTER PART -->
+    <hr class="mb-2">
+    <div class="mb-2 text-center">
+      <span>Am deja un cont? </span>
+      <a [routerLink]="['/login.html']">Intra in cont</a>
+    </div>
+    <app-loading-element *ngIf="loading"></app-loading-element>
+  </form>
+</div>
+<!-- end user/sign-up -->

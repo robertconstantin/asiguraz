@@ -1,0 +1,13 @@
+<div class="popup-wrap">
+  <div class="popup shop-panel popup-data-user">
+    <div class="shop-panel-wrap">
+      <div class="close">
+        <fa-icon [icon]="['fas', 'times']" size="lg"></fa-icon>
+      </div>
+      <app-login *ngIf="isLogin"></app-login>
+      <app-sign-up *ngIf="isSignUp"></app-sign-up>
+      <app-forgot-password *ngIf="isForgotPassword"></app-forgot-password>
+      <app-reset-password *ngIf="isResetPassword"></app-reset-password>
+    </div>
+  </div>
+</div>

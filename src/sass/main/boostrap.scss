@@ -1,0 +1,20 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+// @import 
+//   'functions',
+//   'variables',
+//   'mixins',
+//   'print',
+//   'reboot',
+//   'type';
+
+/* custom */
+.input-group, .custom-control {
+    span {
+        &.req {
+            color: $red;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
+}

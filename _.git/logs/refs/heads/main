@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 576bb8dda9934b56b8cca2e43be73984ccf2cdff Robert Constantin <onepads0@gmail.com> 1600368527 +0100	clone: from https://codeblocksme@dev.azure.com/codeblocksme/Asiguraz/_git/asiguraz.app.new
+576bb8dda9934b56b8cca2e43be73984ccf2cdff 353bf9a9108ad77ac6dbf5668254f568bd67a446 Robert Constantin <onepads0@gmail.com> 1600377888 +0100	commit: improve UI + fix reload bug
+353bf9a9108ad77ac6dbf5668254f568bd67a446 353bf9a9108ad77ac6dbf5668254f568bd67a446 Robert Constantin <onepads0@gmail.com> 1699017443 +0200	Branch: renamed refs/heads/master to refs/heads/main
+353bf9a9108ad77ac6dbf5668254f568bd67a446 353bf9a9108ad77ac6dbf5668254f568bd67a446 Robert Constantin <onepads0@gmail.com> 1699017605 +0200	Branch: renamed refs/heads/main to refs/heads/main

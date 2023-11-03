@@ -1,0 +1,284 @@
+<!-- <app-loading-element *ngIf="loading"></app-loading-element> -->
+<form [formGroup]="form" novalidate>
+  <div class="row workflow-container" novalidate>
+
+    <div class="col-12">
+      <h2 class="fs-title">Vehicul</h2>
+    </div>
+
+    <div class="col-12 pr-md-0">
+      <div class="input-group">
+        <span>Stare inmatriculare</span>
+        <select formControlName="tipInmatriculare">
+          <option selected [ngValue]="null">Alegeti o optiune</option>
+          <option *ngFor="let item of tipuriInmatriculare" [selected]="item.Nume === vehicul.tipInmatriculare">
+            {{ item.Nume }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.controls.tipInmatriculare.invalid && (form.controls.tipInmatriculare.dirty || form.controls.tipInmatriculare.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.tipInmatriculare.errors.required">
+            Stare inmatriculare este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Utilizare</span>
+        <select formControlName="tipUtilizare" [ngClass]="{'select-loading': loadingTipuriUtilizare}">
+          <option selected [ngValue]="null">Alegeti o optiune {{vehicul.tipUtilizare}}</option>
+          <!-- <option selected *ngIf="vehicul.tipUtilizare">{{vehicul.tipUtilizare}}</option> -->
+          <option *ngFor="let item of tipuriUtilizare" [selected]="item.Nume === vehicul.tipUtilizare">
+            {{ item.Nume }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.controls.tipUtilizare.invalid && (form.controls.tipUtilizare.dirty || form.controls.tipUtilizare.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.tipUtilizare.errors.required">
+            Tip utilizare este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Tip Combustibil</span>
+        <select formControlName="combustibil" [ngClass]="{'select-loading': loadingCombustibili}">
+          <option selected [ngValue]="null">Alegeti o optiune</option>
+          <!-- <option selected *ngIf="vehicul.combustibil">{{vehicul.combustibil}}</option> -->
+          <option *ngFor="let item of combustibili" [selected]="item.Nume === vehicul.combustibil">
+            {{ item.Nume }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.controls.combustibil.invalid && (form.controls.combustibil.dirty || form.controls.combustibil.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.combustibil.errors.required">
+            Tipul de combustibil este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Categorie</span>
+        <select formControlName="categorie" [ngClass]="{'select-loading': loadingCategorii}"
+          (change)="filterSubcategories(); getBrands();">
+          <option selected [ngValue]="null">Alegeti o optiune</option>
+          <option *ngFor="let item of categorii" [ngValue]="item.Broker24ID.toString()"
+            [selected]="item.Broker24ID == vehicul.categorie">
+            {{ item.Nume }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.controls.categorie.invalid && (form.controls.categorie.dirty || form.controls.categorie.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.categorie.errors.required">
+            Categoria masini este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Subcategorie</span>
+        <select placeholder="Ex: Autoturism, Autobuz, Motocicleta" formControlName="subcategorie"
+          (change)="getBrands();" [ngClass]="{'select-loading': loadingSubcategorii}">
+          <option selected [ngValue]="null">Alegeti o Optiune</option>
+          <!-- <option selected *ngIf="vehicul.subcategorie">{{vehicul.subcategorie}}</option> -->
+          <option *ngFor="let item of filteredSubcategorii" [ngValue]="item.Nume"
+            [selected]="item.Nume === vehicul.subcategorie">
+            {{ item.Nume }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.controls.subcategorie.invalid && (form.controls.subcategorie.dirty || form.controls.subcategorie.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.subcategorie.errors.required">
+            Subcategoria masini este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Marca</span>
+        <select formControlName="marca" [ngClass]="{'select-loading': loadingMarci}">
+          <!-- (change)="getModels()"> -->
+          <option selected [ngValue]="null">Alegeti o optiune</option>
+          <!-- <option selected *ngIf="vehicul.marca">{{vehicul.marca}}</option> -->
+          <option *ngFor="let item of marci" [ngValue]="item.Nume" [selected]="item.Nume === vehicul.marca">
+            {{ item.Nume | titlecase }}
+          </option>
+        </select>
+        <div *ngIf="form.controls.marca.invalid && (form.controls.marca.dirty || form.controls.marca.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.marca.errors.required">
+            Marca este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-s-12 pr-md-0">
+      <div class="input-group">
+        <span>Model</span>
+        <input type="text" placeholder="Ex: Passat" formControlName="model" />
+        <div *ngIf="form.controls.model.invalid && (form.controls.model.dirty || form.controls.model.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.model.errors.required">
+            Modelul este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="input-group">
+        <span></span>
+        <select formControlName="model">
+          <option>Alegeti o optiune</option>
+          <option *ngFor="let item of modele" [selected]="item.Nume === vehicul.model">
+            {{ item.Nume }}
+          </option>
+        </select>
+      </div> -->
+
+
+
+    <div class="col-12">
+      <hr />
+    </div>
+
+    <div class="col-md-6 pr-md-0">
+      <div class="input-group">
+        <span>Nr. de inmatriculare</span>
+        <input type="text" placeholder="Ex: BH99ABC" formControlName="numarInmatriculare" />
+        <div
+          *ngIf="form.controls.numarInmatriculare.invalid && (form.controls.numarInmatriculare.dirty || form.controls.numarInmatriculare.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.numarInmatriculare.errors.required">
+            Numarul de inmatriculare este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 pr-md-0">
+      <div class="input-group">
+        <span>CIV (Carte Identitate)</span>
+        <input type="text" placeholder="Ex: H232316" formControlName="carteIdentitate" />
+        <div
+          *ngIf="form.controls.carteIdentitate.invalid && (form.controls.carteIdentitate.dirty || form.controls.carteIdentitate.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.carteIdentitate.errors.required">
+            Numarul CIV este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 pr-md-0">
+      <div class="input-group">
+        <span>Serie sasiu (Numar identificare)</span>
+        <input type="text" placeholder="Ex: WVWZZZ1HZRW639880" formControlName="serieSasiu" />
+        <div
+          *ngIf="form.controls.serieSasiu.invalid && (form.controls.serieSasiu.dirty || form.controls.serieSasiu.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.serieSasiu.errors.required">
+            Seria sasiului este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 pr-md-0">
+      <div class="input-group">
+        <span>Capacitate cilindrica</span>
+        <input type="number" placeholder="Ex: 1896" formControlName="capacitateCilindrica" />
+        <div
+          *ngIf="form.controls.capacitateCilindrica.invalid && (form.controls.capacitateCilindrica.dirty || form.controls.capacitateCilindrica.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.capacitateCilindrica.errors.required">
+            Capacitatea cilindrica este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Nr. de locuri</span>
+        <input type="number" placeholder="Ex: 5" formControlName="numarLocuri" />
+        <div
+          *ngIf="form.controls.numarLocuri.invalid && (form.controls.numarLocuri.dirty || form.controls.numarLocuri.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.numarLocuri.errors.required">
+            Numarul de locuri este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Anul Fabricatiei</span>
+        <input type="number" placeholder="Ex: 2001" formControlName="anFabricatie" />
+        <div
+          *ngIf="form.controls.anFabricatie.invalid && (form.controls.anFabricatie.dirty || form.controls.anFabricatie.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.anFabricatie.errors.required">
+            Anul Fabricatiei este necesar
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Putere (KW)</span>
+        <input type="number" placeholder="Ex: Putere" formControlName="putere" />
+        <div *ngIf="form.controls.putere.invalid && (form.controls.putere.dirty || form.controls.putere.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.putere.errors.required">
+            Puterea in KW este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Masa Maxima</span>
+        <input type="number" placeholder="Ex: 1120" formControlName="masaMaxima" />
+        <div
+          *ngIf="form.controls.masaMaxima.invalid && (form.controls.masaMaxima.dirty || form.controls.masaMaxima.touched)"
+          class="error-container">
+          <div *ngIf="form.controls.masaMaxima.errors.required">
+            Masa Maxima este necesara
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <input type="button" name="previous" class="previous action-button" value="Inapoi"
+        (click)="goToStep('proprietar')" />
+      <input type="button" name="next" class="next action-button" value="Vezi Oferte"
+        (click)="goToStep('oferte-asiguratori')" />
+    </div>
+
+    <!-- <div class="col-md-4 col-sm-12">
+     <app-info-vehicul></app-info-vehicul>
+    </div> -->
+  </div>
+</form>

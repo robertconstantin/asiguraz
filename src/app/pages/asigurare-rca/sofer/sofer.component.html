@@ -1,0 +1,64 @@
+<form [formGroup]="formSofer" novalidate>
+
+  <div class="row">
+    <div class="col col-md-6 pr-md-0">
+      <div class="input-group">
+        <span>Prenume</span>
+        <input type="text" placeholder="Ionut" formControlName="prenume" />
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <div class="input-group">
+        <span>Nume de Familie</span>
+        <input type="text" placeholder="Popescu" formControlName="nume" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>... (CNP)</span>
+        <input
+          type="number"
+          placeholder="2881212999999"
+          formControlName="cnp"
+          minlength="13"
+          maxlength="13"
+        />
+      </div>
+    </div>
+    <div class="col col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Serie Buletin</span>
+        <input
+          type="text"
+          placeholder="XH"
+          formControlName="ciSeria"
+          maxlength="2"
+        />
+      </div>
+    </div>
+    <div class="col col-md-3 pr-md-0">
+      <div class="input-group">
+        <span>Numar Buletin</span>
+        <input
+          type="number"
+          placeholder="123456"
+          formControlName="ciNumar"
+        />
+      </div>
+    </div>
+    <div class="col col-md-3">
+      <div class="input-group">
+        <span>Permis ...</span>
+        <input
+          type="date"
+          placeholder=""
+          formControlName="dataPermisConducere"
+        />
+      </div>
+    </div>
+  </div>
+
+</form>

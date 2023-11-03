@@ -1,0 +1,10 @@
+.nav-link{
+    padding: 0.5rem 0;
+    color: #b9b9b9;
+    &:not([href]){
+        color: #b9b9b9;
+    }
+    &.active, &:hover{
+        color: #224093;
+    }
+}

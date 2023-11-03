@@ -1,0 +1,15 @@
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched,
+select.ng-valid.ng-touched {
+  border: 1px solid #229375;
+}
+input.ng-valid,
+textarea.ng-valid,
+select.ng-valid {
+  border: 1px solid #ccc;
+}
+
+input:read-only {
+  background-color: rgba(204, 204, 204, 0.5);
+  border: 1px solid #ccc;
+}

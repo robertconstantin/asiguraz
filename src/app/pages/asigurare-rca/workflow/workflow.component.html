@@ -1,0 +1,16 @@
+<section class="top-baner main-content custom-container lg-auto-height">
+  <div class="team-slide-item-wrap">
+    <!-- multistep form -->
+    <div class="msform">
+      <!-- progressbar -->
+      <ul class="progressbar" [ngClass]="{'d-none': currentUrl.includes('finalizare-comanda')}">
+        <li class="sub-title" [ngClass]="{'active': currentUrl.includes('proprietar') || currentUrl.includes('vehicul') || currentUrl.includes('oferte-asiguratori')}">Proprietar</li>
+        <li class="sub-title" [ngClass]="{'active': currentUrl.includes('vehicul') || currentUrl.includes('oferte-asiguratori')}" >Vehicul</li>
+        <li class="sub-title" [ngClass]="{'active': currentUrl.includes('oferte-asiguratori')}">Oferte</li>
+      </ul>
+      <fieldset class="workflow" [ngClass]="{'last-step': currentUrl.includes('finalizare-comanda')}">
+        <router-outlet></router-outlet>
+      </fieldset>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+<!--==========MAIN CONTENT============-->
+<section class="top-baner main-content main-content-bg no-margin lg-auto-height">
+  <div class="team-slide-item-wrap user-content">
+    <div class="row row-bg">
+      <div class="col col-md-12">
+        <h2 class="mb-4 mt-2">Finalizare Comanda</h2>
+      </div>
+
+      <!-- PROPRIETAR -->
+      <div class="col-12">
+        <div class="card">
+          <div class="row ">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center flex-md-column py-2">
+              <h5>Proprietar</h5>
+            </div>
+            <div class="col-md-7 pl-md-0 d-flex align-items-center justify-content-start">
+              <div class="card-block">
+                <p class="mt-2"><label>Sofer:</label> {{ polita.proprietar.prenume }} {{ polita.proprietar.nume }} </p>
+                <p><label>Adresa:</label>
+                  {{ polita.proprietar.adresa.localitate }},
+                  {{ polita.proprietar.adresa.judet }},
+                  {{ polita.proprietar.adresa.strada }},
+                  {{ polita.proprietar.adresa.bloc }},
+                  {{ polita.proprietar.adresa.scara }},
+                  {{ polita.proprietar.adresa.numar }},
+                  {{ polita.proprietar.adresa.apartament }}
+                </p>
+                <p><label>CNP:</label> {{ polita.proprietar.codNumericPersonal }} </p>
+                <p class="mb-2"><label>Serie si Numar CI:</label> {{ polita.proprietar.serieCi }}
+                  {{ polita.proprietar.numarCi }} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOFERI -->
+      <div class="col-4"
+        [ngClass]="{'col-4': polita.soferi.length == 3, 'col-12': polita.soferi.length == 1, 'col-6': polita.soferi.length == 2}"
+        *ngFor="let sofer of polita.soferi; let i = index">
+        <div class="card">
+          <div class="row ">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center flex-md-column py-2">
+              <h5>Sofer {{ i === 0 ? 'Principal' : 'Secundar'}}</h5>
+            </div>
+            <div class="col-md-7 pl-md-0 d-flex align-items-center justify-content-start">
+              <div class="card-block">
+                <p class="mt-2"><label>Sofer:</label> {{sofer.prenume}} {{sofer.nume}} </p>
+                <p><label>CNP:</label> {{ sofer.cnp }} </p>
+                <p class="mb-2"><label>Serie si Numar CI:</label> {{ sofer.ciSeria }} {{ sofer.ciNumar }} </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- VEHICUL -->
+      <div class="col-12">
+        <div class="card">
+          <div class="row ">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center flex-md-column py-2">
+              <h5>Vehicul</h5>
+            </div>
+            <div class="col-md-4 pl-md-0 d-flex align-items-center justify-content-start">
+              <div class="card-block">
+                <p class="mt-2"><label>Vehicul:</label> {{ polita.vehicul.marca }} - {{ polita.vehicul.model }} </p>
+                <p><label>Stare Inmatriculare:</label> {{ polita.vehicul.tipInmatriculare }} </p>
+                <p><label>Utilizare:</label> {{ polita.vehicul.tipUtilizare }} </p>
+                <p><label>Tip Combustibil:</label> {{ polita.vehicul.combustibil }} </p>
+                <p><label>Categorie:</label> {{ polita.vehicul.categorie }} </p>
+                <p><label>Subcategorie:</label> {{ polita.vehicul.subcategorie }} </p>
+                <p class="mb-2"><label>Carte identitate:</label> {{ polita.vehicul.carteIdentitate }} </p>
+              </div>
+            </div>
+            <div class="col-md-4 pl-md-0 d-flex align-items-center justify-content-start">
+              <div class="card-block">
+                <p class="mt-2"><label>Numar Inmatriculare:</label> {{ polita.vehicul.numarInmatriculare }} </p>
+                <p><label>Serie Sasiu:</label> {{ polita.vehicul.serieSasiu }} </p>
+                <p><label>An Fabricatie:</label> {{ polita.vehicul.anFabricatie }} </p>
+                <p><label>Numar Locuri:</label> {{ polita.vehicul.numarLocuri }} </p>
+                <p><label>Capacitate Cilindrica:</label> {{ polita.vehicul.capacitateCilindrica }} </p>
+                <p><label>Putere:</label> {{ polita.vehicul.putere }} </p>
+                <p class="mb-2"><label>Masa Maxima:</label> {{ polita.vehicul.masaMaxima }} </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- POLITA -->
+      <div class="col-12">
+        <div class="card">
+          <div class="row ">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center flex-md-column py-2">
+              <div class="asig-logo d-flex align-items-center justify-content-center">
+                <img src="assets/asiguratori/{{ polita.societate }}.png" class="">
+              </div>
+            </div>
+            <div class="col-md-7 pl-md-0 d-flex align-items-center justify-content-start">
+              <div class="card-block">
+                <p class="mt-2"><label>Asigurator:</label> {{ polita.societate }} </p>
+                <p><label>Data de inceput:</label> {{ polita.dataInceput | date: 'dd MMM yyyy' }}  </p>
+                <p class="mb-2"><label>Durata:</label> {{polita.durata == 1 ? 'o luna' : polita.durata + ' Luni'}}  </p>
+              </div>
+            </div>
+            <div class="col-md-2 d-flex align-items-center align-items-md-end justify-content-center flex-column">
+              <p class="mt-2"><label>Total:</label> <span class="total mr-2"> {{ polita.cotatie.prima | currency:'RON'}}</span> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-center flex-column">
+              <button type="button" class="btn d-flex btn-danger my-4" (click)="requestPayment()"
+                [disabled]="loadingPayment">
+                Finalizeaza comanda
+                <fa-icon [icon]="['fas', 'shield-alt']" size="sm" class="ml-1"></fa-icon>
+              </button>
+            </div>
+          </div>
+          <div class="row" *ngIf="loadingPayment">
+            <div class="col-md-12">
+              <app-loading-element></app-loading-element>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<form id="vPostForm" name="vPostForm" #postForm>
+  <input type="hidden" name="data" value="{{ data }}" />
+  <input type="hidden" name="env_key" value="{{ envKey }}" />
+</form>

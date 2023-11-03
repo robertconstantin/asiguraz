@@ -1,0 +1,56 @@
+<!--==========MAIN CONTENT============-->
+<section class="main-content no-margin">
+  <section class="main-baner-full index-baner">
+
+    <section class="section-index index-bg2 section-index-contact">
+      <div class="cell-view">
+        <div class="contact-index-desc-wrap" [ngClass]="{'active': hidden}">
+          <div class="container">
+            <div class="contact-index-desc">
+              <form action="#" class="index-contact-form questform">
+                <i class="fa-cancel" (click)="showForm()"></i>
+                <h2 class="h2-index">Contact</h2>
+                <div class="adress-item row">
+                  <p class="m-0 col-12">410034 Oradea, Jud. Bihor, Str. George Enescu, Nr. 21</p>
+                  <a href="#" class="col-12">office@asiguraz.ro</a>
+                  <a href="#" class="col-12">0745.928.756</a>
+                </div>
+                <h3 class="h3-index mt-1">Contacteaza-ne</h3>
+                <ul class="">
+                  <li class="active">
+                    <input id="q1" name="q1" type="email" placeholder="email" class="input-control" required>
+                  </li>
+                  <li>
+                    <input id="q2" name="q2" type="text" placeholder="nume" class="input-control" required>
+                  </li>
+                  <li>
+                    <textarea id="q3" name="q3" type="text" placeholder="mesaj" class="input-control" rows="5"></textarea>
+                    <!-- <input id="q3" name="q3" type="text" placeholder="mesaj" class="input-control" required> -->
+                  </li>
+                </ul>
+                <div class="controls submit-form">
+                  <button class="button-type-4">
+                    <span>Trimite</span>
+                  </button>
+                  <input type="submit" class="submit-button" value="">
+                </div>
+                <span class="error-message">Va rugam completati campul inainte de a continua</span>
+                <span class="final-message">Thank you! We'll be in touch.</span>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="contact-button" *ngIf="!hidden">
+          <a class="button-type-2 style-2" (click)="showForm()">
+            <span>Contacteaza-ne</span>
+          </a>
+        </div>
+        <div class="map-wrapper type-2" id="map-canvas" data-lat="47.059062" data-lng="21.939120" data-zoom="14" data-marker="assets/marker2.jpg"
+          data-style="1"></div>
+        <div class="markers-wrapper addresses-block">
+          <a class="marker" data-rel="map-canvas" data-lat="47.059062" data-lng="21.939120" data-string='<div class="marker-tooltip"><span class="sub-title">address</span><h5 class="h11">410034 Oradea, Jud. Bihor, <br /> Str. George Enescu, Nr. 21</h5></div>'></a>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>
